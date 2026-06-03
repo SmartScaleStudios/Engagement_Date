@@ -1,0 +1,436 @@
+html {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+*, ::before, ::after {
+  box-sizing: inherit;
+}
+
+#galaxy {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background: radial-gradient(circle at 50% 50%, #2b1055 0%, #0f051d 40%, #020005 100%);
+}
+
+.star-sm {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	border-radius: 50%;
+	color: rgba(255, 255, 255, 0.5);
+	box-shadow: 12vw 15vh, 85vw 23vh, 34vw 72vh, 65vw 88vh, 3vw 40vh, 92vw 61vh, 55vw 18vh, 22vw 82vh, 78vw 49vh, 47vw 33vh, 19vw 5vh, 88vw 91vh, 41vw 58vh, 73vw 12vh, 8vw 79vh, 61vw 66vh, 27vw 29vh, 95vw 37vh, 50vw 83vh, 14vw 60vh, 38vw 19vh, 81vw 75vh, 69vw 42vh, 25vw 94vh, 58vw 3vh, 89vw 16vh, 4vw 22vh, 76vw 57vh, 44vw 89vh, 62vw 27vh, 17vw 47vh, 83vw 8vh, 31vw 64vh, 70vw 81vh, 52vw 51vh, 97vw 73vh, 29vw 11vh, 67vw 96vh, 10vw 35vh, 74vw 39vh;
+    
+	/*animation-name: deepSkyFlare;
+	animation-duration: 9s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in-out;*/
+}
+
+.star-md {
+	position: absolute;
+	width: 2px;
+	height: 2px;
+	border-radius: 50%;
+	color: rgba(255, 255, 255, 0.7);
+	box-shadow: 5vw 18vh, 93vw 29vh, 42vw 81vh, 68vw 11vh, 21vw 53vh, 80vw 64vh, 56vw 40vh, 15vw 87vh, 77vw 92vh, 33vw 24vh, 87vw 46vh, 50vw 69vh, 11vw 38vh, 62vw 76vh, 26vw 5vh, 74vw 21vh, 39vw 59vh, 84vw 83vh, 59vw 95vh, 2vw 67vh, 90vw 12vh, 47vw 16vh, 71vw 50vh, 28vw 43vh, 65vw 32vh;
+
+	/*animation-name: midSkyFlare;
+	animation-duration: 6s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in-out;*/
+}
+
+.star-lg {
+	position: absolute;
+	width: 3px;
+	height: 3px;
+	border-radius: 50%;
+	color: rgba(255, 255, 255, 1);
+	box-shadow: 8vw 25vh, 82vw 14vh, 53vw 78vh, 23vw 62vh, 75vw 45vh, 37vw 36vh, 91vw 70vh, 64vw 89vh, 19vw 19vh, 46vw 52vh, 86vw 88vh, 30vw 93vh;
+
+	/*animation-name: deepSkyFlare;
+	animation-duration: 7s;
+	animation-delay: 3.5s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in-out;*/
+}
+
+@keyframes deepSkyFlare {
+	0%, 100% {
+	  transform: scale(1);
+	  opacity: 0;
+	}
+	50% {
+	  transform: scale(4);
+	  opacity: 0.65;
+	}
+}
+
+/*@keyframes midSkyFlare {
+	0%, 100% {
+	  filter: brightness(1) drop-shadow(0 0 0px rgba(255, 255, 255, 0));
+	}
+	50% {
+	  filter: brightness(2.0) drop-shadow(0 0 6px rgba(255, 255, 255, 0.9));
+	}
+}*/
+
+.star-sm::after, .star-md::after, .star-lg::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+
+  box-shadow: inherit;
+  color: inherit;
+
+  filter: blur(2px);
+
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+.star-sm::after {
+  animation-name: deepSkyFlare;
+  animation-duration: 7s;
+}
+
+.star-md::after {
+  animation-name: deepSkyFlare;
+  animation-duration: 5s;
+  animation-delay: 1.5s;
+}
+
+.star-lg::after {
+  animation-name: deepSkyFlare;
+  animation-duration: 6s;
+  animation-delay: 3s;
+}
+
+.constellation-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+
+  width: 100%;
+  max-width: 1000px;
+  height: 500px;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.date {
+  position: absolute;
+  bottom: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  font-family: 'Cinzel', Georgia, serif;
+  font-weight: 300;
+  letter-spacing: 6px;
+
+  color: transparent;
+  -webkit-text-stroke: 1px #f4e0a5;
+  text-shadow: 0 0 8px rgba(244, 224, 165, 0.4);
+}
+
+.p, .ampersand, .c {
+  position: relative;
+  width: 250px;
+  height: 250px;
+
+  /*border: 1px dashed rgba(255, 255, 255, 0.5);*/
+}
+
+.node {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+
+  background: transparent;
+  border: 1.5px solid #ffffff;
+
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.8),
+	  inset 0 0 4px rgba(255, 255, 255, 0.5);
+
+  transform: translate(-50%, -50%);
+  z-index: 2;
+
+  animation-name: cosmicPulse;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes cosmicPulse {
+	0%, 100% {
+	  opacity: 0.3;
+	  box-shadow: 0 0 4px rgba(255, 255, 255, 0.4),
+		  inset 0 0 2px rgba(255, 255, 255, 0.2);
+	}
+	50% {
+	  opacity: 1.0;
+	  box-shadow: 0 0 16px rgba(255, 255, 255, 1.0),
+		  0 0 25px rgba(255, 255, 255, 0.6),
+		  inset 0 0 8px rgba(255, 255, 255, 0.8);
+	}
+}
+
+.p-star1 {
+  top: 10%;
+  left: 25%;
+  animation-delay: 0.0s;
+}
+
+.p-star2 {
+  top: 50%;
+  left: 25%;
+  animation-delay: 0.6s;
+}
+
+.p-star3 {
+  top: 90%;
+  left: 25%;
+  animation-delay: 1.8s;
+}
+
+.p-star4 {
+  top: 10%;
+  left: 75%;
+  animation-delay: 1.2s;
+}
+
+.p-star5 {
+  top: 30%;
+  left: 90%;
+  animation-delay: 2.4s;
+}
+
+.p-star6 {
+  top: 50%;
+  left: 75%;
+  animation-delay: 3.0s;
+}
+
+.amp-star1 {
+  top: 12%;
+  left: 55%;
+  animation-delay: 0.3s;
+}
+
+.amp-star2 {
+  top: 28%;
+  left: 40%;
+  animation-delay: 1.5s;
+}
+
+.amp-star3 {
+  top: 48%;
+  left: 55%;
+  animation-delay: 0.0s;
+}
+
+.amp-star4 {
+  top: 68%;
+  left: 30%;
+  animation-delay: 2.1s;
+}
+
+.amp-star5 {
+  top: 88%;
+  left: 55%;
+  animation-delay: 0.9s;
+}
+
+.amp-star6 {
+  top: 78%;
+  left: 80%;
+  animation-delay: 2.7s;
+}
+
+.amp-star7 {
+  top: 60%;
+  left: 90%;
+  animation-delay: 1.2s;
+}
+
+.c-star1 {
+  top: 18%;
+  left: 80%;
+  animation-delay: 0.8s;
+}
+
+.c-star2 {
+  top: 12%;
+  left: 45%;
+  animation-delay: 2.0s;
+}
+
+.c-star3 {
+  top: 50%;
+  left: 25%;
+  animation-delay: 0.2s;
+}
+
+.c-star4 {
+  top: 88%;
+  left: 45%;
+  animation-delay: 1.4s;
+}
+
+.c-star5 {
+  top: 82%;
+  left: 80%;
+  animation-delay: 2.6s;
+}
+
+.connect-line {
+  position: absolute;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.25);
+
+  transform-origin: left center;
+
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.4);
+
+  z-index: 1;
+}
+
+.p-connector1 {
+  top: 10%;
+  left: 25%;
+  width: 100px;
+  transform: rotate(90deg);
+}
+
+.p-connector2 {
+  top: 50%;
+  left: 25%;
+  width: 100px;
+  transform: rotate(90deg);
+}
+
+.p-connector3 {
+  top: 10%;
+  left: 25%;
+  width: 125px;
+  transform: rotate(0deg);
+}
+
+.p-connector4 {
+  top: 10%;
+  left: 75%;
+  width: 63px;
+  transform: rotate(53deg);
+}
+
+.p-connector5 {
+  top: 30%;
+  left: 90%;
+  width: 63px;
+  transform: rotate(127deg);
+}
+
+.p-connector6 {
+ top: 50%;
+ left: 75%;
+ width: 125px;
+ transform: rotate(180deg);
+}
+
+.amp-connector1 {
+  top: 12%;
+  left: 55%;
+  width: 53px;
+  transform: rotate(135deg);
+}
+
+.amp-connector2 {
+  top: 12%;
+  left: 55%;
+  width: 90px;
+  transform: rotate(90deg);
+}
+
+.amp-connector3 {
+  top: 28%;
+  left: 40%;
+  width: 59px;
+  transform: rotate(53deg);
+}
+
+.amp-connector4 {
+  top: 48%;
+  left: 55%;
+  width: 82px;
+  transform: rotate(142deg);
+}
+
+.amp-connector5 {
+  top: 68%;
+  left: 30%;
+  width: 82px;
+  transform: rotate(38deg);
+}
+
+.amp-connector6 {
+  top: 48%;
+  left: 55%;
+  width: 98px;
+  transform: rotate(50deg);
+}
+
+.amp-connector7 {
+  top: 88%;
+  left: 55%;
+  width: 115px;
+  transform: rotate(-38deg);
+}
+
+.c-connector1 {
+  top: 18%;
+  left: 80%;
+  width: 89px;
+  transform: rotate(190deg);
+}
+
+.c-connector2 {
+  top: 12%;
+  left: 45%;
+  width: 107px;
+  transform: rotate(118deg);
+}
+
+.c-connector3 {
+  top: 50%;
+  left: 25%;
+  width: 107px;
+  transform: rotate(62deg);
+}
+
+.c-connector4 {
+  top: 88%;
+  left: 45%;
+  width: 89px;
+  transform: rotate(-10deg);
+}
